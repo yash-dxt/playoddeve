@@ -3,6 +3,7 @@ package game
 import (
 	"context"
 	"errors"
+	"log"
 	"playoddeve/api/ptypes"
 
 	"github.com/google/uuid"
@@ -21,8 +22,8 @@ const TOSS_FIELD = "field"
 
 const RESULT_TIE = "tie"
 
-func GetUserGame() {
-
+func GetUserGame(ctx context.Context, game_id string) (ptypes.Game, error) {
+	return GetGame(ctx, "16c42cd0-6198-4365-b811-73de88dbaecc")
 }
 
 func QuitGame() {
@@ -97,34 +98,49 @@ func UpdateDelivery(ctx context.Context, game_id string, username string, user_i
 	// stage 1: check if toss has happened & game exists.
 	if game.GameId == "" || len(game.TossWinnerChoice) == 0 {
 		// throw some error saying that toss hasn't happened or game hasn't been created.
+		log.Print("game doesn't exist or toss hasn't happened")
+
 		return ptypes.Game{}, errors.New("game doesn't exist or toss hasn't happened")
 	}
 
 	// stage 2: check if status is finished.
 	if game.GameStatus == STATUS_FINISHED {
 		// return that the innings is finished.
+		log.Print("game already finished")
+
 		return ptypes.Game{}, errors.New("game has already finished")
 	}
 
 	// stage 3: check which innings is ongoing.
 	innings_no, innings := GetInnings(game)
-	p2_output := randomIntFromOneToSix() // currently bot is generating it.
+	p2_input := randomIntFromOneToSix() // currently bot is generating it.
 
-	if p2_output == user_input {
+	if IsP1Batting(game, innings_no) {
 
-		num := p2_output
-		// HOWZATT!!!
 		innings = append(innings, ptypes.Deliveries{
-			Bat:  num,
-			Bowl: num, // can be the reverse, doesn't really matter.
+			Bat:  user_input,
+			Bowl: p2_input, // can be the reverse, doesn't really matter.
 		})
 
+	} else {
+
+		innings = append(innings, ptypes.Deliveries{
+			Bat:  p2_input,
+			Bowl: user_input, // can be the reverse, doesn't really matter.
+		})
 	}
 
 	if innings_no == 2 {
 		game.Innings2 = innings
-		game.GameStatus = STATUS_FINISHED
-		game.GameWinner = GetWinner(game)
+
+		last_delivery := innings[len(innings)-1]
+
+		if last_delivery.Bat == last_delivery.Bowl ||
+			CalculateRunsForInnings(game.Innings2) > CalculateRunsForInnings(game.Innings1) {
+
+			game.GameStatus = STATUS_FINISHED
+			game.GameWinner = GetWinner(game)
+		}
 	} else {
 		game.Innings1 = innings
 		game.GameStatus = STATUS_ONGOING

@@ -75,7 +75,6 @@ func GetInnings(game ptypes.Game) (int, []ptypes.Deliveries) {
 	if firstInnings.Bat == firstInnings.Bowl {
 		// this means that the first innigns has ended.
 		// according to the rules of odd eve, same number = OUT!!
-
 		return 2, game.Innings2
 	}
 	return 1, game.Innings1
@@ -114,6 +113,32 @@ func IsP1TossWinner(toss ptypes.Toss) bool {
 
 	if toss.ChoiceP1 == CHOICE_ODD && num_total%2 != 0 {
 		return true
+	}
+
+	return false
+}
+
+func IsP1Batting(game ptypes.Game, innings int) bool {
+	if innings == 1 {
+
+		if game.TossWinnerChoice == TOSS_BAT && IsP1TossWinner(game.Toss) {
+			return true
+		}
+
+		if game.TossWinnerChoice == TOSS_FIELD && !IsP1TossWinner(game.Toss) {
+			return true
+		}
+
+	} else {
+
+		if game.TossWinnerChoice == TOSS_FIELD && IsP1TossWinner(game.Toss) {
+			return true
+		}
+
+		if game.TossWinnerChoice == TOSS_BAT && !IsP1TossWinner(game.Toss) {
+			return true
+		}
+
 	}
 
 	return false

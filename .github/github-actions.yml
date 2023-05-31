@@ -3,7 +3,7 @@ name: Deploy playoddeve
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   productionDeployment:

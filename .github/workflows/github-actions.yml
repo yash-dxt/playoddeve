@@ -16,7 +16,7 @@ jobs:
         go-version: '>=1.17.0'
     - run: npm ci
     - name: Install Plugin and Deploy
-      uses: serverless/github-action@v2
+      uses: serverless/github-action@v3
       with:
         args: -c "serverless plugin install --name serverless-go-plugin && npm run deploy:prod"
         entrypoint: /bin/sh

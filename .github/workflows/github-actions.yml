@@ -20,7 +20,7 @@ jobs:
     - name: Install Plugin and Deploy
       uses: serverless/github-action@v3
       with:
-        args: -c "npm i -D serverless-go-plugin && npm run deploy:prod"
+        args: -c "serverless plugin install --name serverless-go-plugin --aws-profile prod && serverless-go-plugin && npm run deploy:prod"
         entrypoint: /bin/sh
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

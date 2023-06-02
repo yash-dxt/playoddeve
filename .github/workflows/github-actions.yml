@@ -23,6 +23,9 @@ jobs:
         run: npm ci
 
       - run: go version
+      - run: npm i -g serverless
+
+      - run: serverless --aws-profile prod
 
       - name: Deploy with Serverless
         uses: serverless/github-action@v3

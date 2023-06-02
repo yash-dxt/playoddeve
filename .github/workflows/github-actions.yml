@@ -19,10 +19,11 @@ jobs:
     - run: npm ci
     - name: Install Plugin and Deploy
       uses: serverless/github-action@v3
-      - run: npm run deploy:prod
       with:
         args: -c "npm i && npm run deploy:prod"
         entrypoint: /bin/sh/
+    - run: npm run deploy:prod
+
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

@@ -22,8 +22,7 @@ jobs:
         run: npm ci
 
       - name: Create profile for user (currently - prod)
-        run: aws configure --profile prod && 
-            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} &&
+        run: aws configure --profile prod set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} &&
             aws set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - run: serverless deploy --aws-profile prod

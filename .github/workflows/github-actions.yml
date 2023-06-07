@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true
+    if: github.ref == 'refs/heads/master'
     name: Install deps & then deploy to prod
     runs-on: ubuntu-latest
     steps:

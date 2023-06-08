@@ -22,11 +22,6 @@ jobs:
 
       - run: echo "HIII"
 
-      - name: get godotenv
-        run: go get github.com/joho/godotenv
-
-      - run: godotenv
-
       - name: run go test case
         run: go test ./...
 

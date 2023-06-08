@@ -2,7 +2,7 @@ name: Deploy golang code using serverless
 
 on:
   push:
-    branches:
+    branches: 
       - master
 
 jobs:

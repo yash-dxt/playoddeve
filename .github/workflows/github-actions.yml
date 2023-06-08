@@ -23,6 +23,11 @@ jobs:
       - name: run go test case
         run: go test ./...
 
+      - name: get godotenv
+        run: go get github.com/joho/godotenv
+
+      - run: godotenv
+
       - name: Install dependencies
         run: npm ci
 

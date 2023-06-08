@@ -20,6 +20,8 @@ jobs:
         with:
           go-version: ^1.17
 
+      - run: echo "HIII"
+
       - name: get godotenv
         run: go get github.com/joho/godotenv
 

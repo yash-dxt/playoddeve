@@ -18,6 +18,13 @@ jobs:
         with:
           go-version: ^1.17
 
+      - name: Configure AWS Credentials
+        run: serverless config credentials 
+          --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} 
+          --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
+          --profile default
+
+      - run: export TABLE_GAME=playoddeve-Game-prod AWS_REGION=ap-south-1
       - run: echo $TABLE_GAME
       - run: echo $AWS_REGION
 

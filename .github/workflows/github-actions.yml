@@ -25,6 +25,8 @@ jobs:
       - name: Install serverless
         run: npm i -g serverless
 
+      - run: git reflog -n 10
+      
       - name: Configure AWS Credentials
         run: serverless config credentials 
           --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} 

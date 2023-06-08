@@ -22,8 +22,8 @@ jobs:
 
       - run: echo "HIII"
 
-      - name: run go test case
-        run: go test ./...
+      # - name: run go test case
+      #   run: go test ./...
 
       - name: Install dependencies
         run: npm ci

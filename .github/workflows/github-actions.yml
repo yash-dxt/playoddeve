@@ -20,7 +20,7 @@ jobs:
         id: set-output-defaults
         run: |    
           # If workflow_dispatch, use inputs (left), if other trigger, use default env (right)
-          echo "::set-output name=build-and-verify::${{ github.event.inputs.build-and-verify || 'true' }}"
+          echo "::set-output name=build-and-verify::${{ github.event.inputs.build-and-verify || true }}"
   
   deploy:
     needs: [EnvSetup]

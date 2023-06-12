@@ -1,4 +1,4 @@
-name: Deploy golang code using serverless
+name: Deploy 'em all 
 
 on:
   pull_request:

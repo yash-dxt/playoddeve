@@ -6,9 +6,9 @@ on:
       - master
 
 jobs:
-  staging-checks:
-    uses: yash-dxt/reusable-workflow/.github/workflows/deploy-staging.yml@main
-    secrets: inherit
+  # staging-checks:
+  #   uses: yash-dxt/reusable-workflow/.github/workflows/deploy-staging.yml@main
+  #   secrets: inherit
   deploy-prod:
     if: github.event.action == 'closed' && github.event.pull_request.merged == true
     uses: yash-dxt/reusable-workflow/.github/workflows/deploy-prod.yml@main

@@ -4,7 +4,8 @@ on:
   pull_request:
     branches: 
       - master
-
+    types: [opened, closed]
+    
 jobs:
   # staging-checks:
   #   uses: yash-dxt/reusable-workflow/.github/workflows/deploy-staging.yml@main

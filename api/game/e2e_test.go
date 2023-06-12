@@ -35,6 +35,6 @@ func TestEndToEnd(t *testing.T) {
 	log.Println("first innings total: ", game.CalculateRunsForInnings(test_game.Innings1))
 	log.Println("second innings total: ", game.CalculateRunsForInnings(test_game.Innings2))
 	log.Println("winner: ", test_game.GameWinner)
-	log.Println("game_id: ", test_game.GameId)
+	log.Println("game id: ", test_game.GameId)
 
 }

@@ -1,54 +1,15 @@
 name: Deploy golang code using serverless
 
 on:
-  push:
+  pull_request:
     branches: 
       - master
 
-env:
-  TABLE_GAME: playoddeve-Game-prod
-  AWS_REGION: ap-south-1
-
 jobs:
-  deploy:
-    name: Install deps & then deploy to prod
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: ^1.17
-
-      - name: Install serverless
-        run: npm i -g serverless
-
-      - run: git reflog -n 10
-      
-      - name: Configure AWS Credentials
-        run: serverless config credentials 
-          --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} 
-          --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
-          --profile default
-
-      - run: echo $TABLE_GAME
-      - run: echo $AWS_REGION
-
-
-      - name: run go test case
-        run: go test ./...
-
-      - name: Install dependencies
-        run: npm ci
-
-
-      - name: Configure AWS Credentials
-        run: serverless config credentials 
-          --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} 
-          --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
-          --profile prod
-
-      - name: Deploy serverless
-        run: serverless deploy --aws-profile prod
+  staging-checks:
+    uses: yash-dxt/reusable-workflow/.github/workflows/deploy-staging.yml@main
+    secrets: inherit
+  deploy-prod:
+    if: github.event.pull_request.merged == true
+    uses: yash-dxt/reusable-workflow/.github/workflows/deploy-prod.yml@main
+    secrets: inherit

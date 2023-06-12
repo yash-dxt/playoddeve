@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "go test",
+    "test": "godotenv -f ./.env.test go test ./...",
     "deploy:local": "serverless deploy --aws-profile local",
     "deploy:staging": "serverless deploy --aws-profile staging",
     "create-domain": "serverless create_domain --aws-profile prod",

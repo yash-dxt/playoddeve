@@ -64,6 +64,17 @@ custom:
   
   gameTableName: '${self:service}-Game-${sls:stage}'  
 
+  vpcConfig:
+    cidrBlock: "10.0.0.0/16"
+    createDbSubnet: true
+    createNatInstance: true
+    createParameters: true
+    zones:
+      - ap-south-1a
+      - ap-south-1b
+    services:
+    subnetGroups:
+
 resources:
   Resources:
     gameTable:

@@ -41,7 +41,7 @@ functions:
 
 plugins:
   - serverless-go-plugin
-
+  - serverless-vpc-plugin
 custom:
   stages:
     - local

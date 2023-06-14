@@ -6,7 +6,7 @@
     "create-domain": "serverless create_domain --aws-profile prod",
     "deploy:prod": "serverless deploy --aws-profile prod",
     "deploy-function:prod": "serverless deploy function --function api --aws-profile prod",
-    "setup": "wget https://golang.org/dl/go1.8.1.linux-amd64.tar.gz && tar -C . -xzf go1.8.1.linux-amd64.tar.gz && ls && export PATH=$PATH:$(pwd)/go/bin && go version"
+    "setup": "wget https://golang.org/dl/go1.8.1.linux-amd64.tar.gz && tar && tar -C . -xzf go1.8.1.linux-amd64.tar.gz && ls && export PATH=$PATH:$(pwd)/go/bin && go version"
   },
   "devDependencies": {
     "serverless-domain-manager": "^6.2.0",

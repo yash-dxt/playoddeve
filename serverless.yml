@@ -1,4 +1,4 @@
-service: playoddeve
+service: play-odd-eve
 
 configValidationMode: error
 frameworkVersion: '3'
@@ -21,7 +21,6 @@ provider:
             - dynamodb:PutItem
             - dynamodb:BatchWriteItem
             - dynamodb:UpdateItem
-
           Resource:
             - Fn::GetAtt: [ gameTable, Arn ]
 
@@ -41,7 +40,6 @@ functions:
 
 plugins:
   - serverless-go-plugin
-  - serverless-vpc-plugin
 custom:
   stages:
     - local
@@ -63,17 +61,6 @@ custom:
     buildProvidedRuntimeAsBootstrap: true
   
   gameTableName: '${self:service}-Game-${sls:stage}'  
-
-  vpcConfig:
-    cidrBlock: "10.0.0.0/16"
-    createDbSubnet: true
-    createNatInstance: true
-    createParameters: true
-    zones:
-      - ap-south-1a
-      - ap-south-1b
-    services:
-    subnetGroups:
 
 resources:
   Resources:

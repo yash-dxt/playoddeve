@@ -8,7 +8,7 @@ on:
 
 jobs:
   staging-checks:
-    if: github.event.action == 'opened' 
+    if: github.event.action == 'opened' || github.event.action == 'synchronize'
     uses: yash-dxt/reusable-workflow/.github/workflows/deploy-staging.yml@main
     secrets: inherit
   deploy-prod:

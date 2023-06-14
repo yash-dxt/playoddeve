@@ -2,11 +2,13 @@ package main
 
 import (
 	"context"
+	"io"
 	"net/http"
 	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/metaphi-org/go-infra-sdk/helpers"
 
 	ginadapter "github.com/awslabs/aws-lambda-go-api-proxy/gin"
 	"github.com/gin-contrib/cors"
@@ -37,6 +39,20 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 
 		c.JSON(http.StatusOK, gin.H{"msg": "helloworld"})
+	})
+
+	router.GET(("/hello/ip"), func(c *gin.Context) {
+		data, err := http.Get("https://icanhazip.com/")
+		if err != nil {
+			helpers.HandleError(*c, err)
+			return
+		}
+		body, err := io.ReadAll(data.Body)
+		if err != nil {
+			helpers.HandleError(*c, err)
+			return
+		}
+		c.JSON(http.StatusOK, gin.H{"ip": strings.TrimSpace(string(body))})
 	})
 
 	ginLambda = ginadapter.NewV2(router)

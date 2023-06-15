@@ -2,3 +2,5 @@
 .serverless
 .bin
 node_modules/
+go/ 
+go1.8.1.linux-amd64.tar.gz

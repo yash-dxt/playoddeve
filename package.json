@@ -8,7 +8,7 @@
     "deploy-function:prod": "serverless deploy function --function api --aws-profile prod",
     "download-go": "wget https://golang.org/dl/go1.8.1.linux-amd64.tar.gz",
     "extract-go": "tar -C . -xzf go1.8.1.linux-amd64.tar.gz",
-    "set-go": "export PATH=$(pwd)/go/bin",
+    "set-go": "alias go=$(pwd)/go/bin",
     "setup": "npm run download-go && npm run extract-go && npm run set-go && go version"
   },
   "devDependencies": {

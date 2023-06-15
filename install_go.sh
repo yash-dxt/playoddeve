@@ -10,6 +10,3 @@ export PATH="$(pwd)/go/bin:$PATH"
 # Display the Go version
 go version
 
-go install github.com/joho/godotenv/cmd/godotenv@latest
-
-godotenv -f ./.env.test go test ./...

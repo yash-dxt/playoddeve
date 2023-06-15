@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "go version && go install github.com/joho/godotenv/cmd/godotenv@latest && godotenv -f ./.env.test go test ./...",
+    "test": "go install github.com/joho/godotenv/cmd/godotenv@latest && ls $HOME/go/bin && godotenv -f ./.env.test go test ./...",
     "deploy:local": "serverless deploy --aws-profile local",
     "deploy:staging": "serverless deploy --aws-profile staging",
     "create-domain": "serverless create_domain --aws-profile prod",

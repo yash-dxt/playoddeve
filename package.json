@@ -1,16 +1,16 @@
 {
   "scripts": {
-    "test": "go install github.com/joho/godotenv/cmd/godotenv@latest && godotenv -f ./.env.test go test ./...",
+    "create-domain": "serverless create_domain --aws-profile prod",
     "deploy:local": "serverless deploy --aws-profile local",
     "deploy:staging": "serverless deploy --aws-profile staging",
-    "create-domain": "serverless create_domain --aws-profile prod",
     "deploy:prod": "serverless deploy --aws-profile prod",
     "deploy-function:prod": "serverless deploy function --function api --aws-profile prod",
-    "setup": "wget https://golang.org/dl/go1.8.1.linux-amd64.tar.gz && tar -C . -xzf go1.8.1.linux-amd64.tar.gz"
+    "setup-lang-deps": "",
+    "install-godotenv": "go install github.com/joho/godotenv/cmd/godotenv@latest",
+    "test": "npm run install-godotenv && export GOPATH=$HOME/go && export PATH=$PATH:$GOPATH/bin && godotenv -f ./.env.test go test ./..."
   },
   "devDependencies": {
     "serverless-domain-manager": "^6.2.0",
-    "serverless-go-plugin": "^2.2.0",
-    "serverless-vpc-plugin": "^1.0.6"
+    "serverless-go-plugin": "^2.2.0"
   }
 }

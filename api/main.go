@@ -63,4 +63,4 @@ func Handler(ctx context.Context, request events.APIGatewayV2HTTPRequest) (event
 	return ginLambda.ProxyWithContext(ctx, request)
 }
 
-// && ls && export PATH=$PATH:$(pwd)/go/bin && go version
+// && ls &&  && go version

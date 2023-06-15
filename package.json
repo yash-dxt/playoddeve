@@ -6,11 +6,10 @@
     "create-domain": "serverless create_domain --aws-profile prod",
     "deploy:prod": "serverless deploy --aws-profile prod",
     "deploy-function:prod": "serverless deploy function --function api --aws-profile prod",
-    "download-go": "wget https://golang.org/dl/go1.8.1.linux-amd64.tar.gz",
-    "extract-go": "tar -C . -xzf go1.8.1.linux-amd64.tar.gz",
-    "set-go": "alias pew=$(pwd)/go/bin/go",
-    "pew": "pew version",
-    "setup": "npm run download-go && npm run extract-go && npm run set-go && pew version && ./go/bin/go version"
+    "download-go": "bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)",
+    "extract-go": "gvm install go1.18.1",
+    "set-go": "gvm use go1.18.1",
+    "setup": "npm run download-go && npm run extract-go && npm run set-go && go version"
   },
   "devDependencies": {
     "serverless-domain-manager": "^6.2.0",

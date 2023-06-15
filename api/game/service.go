@@ -106,7 +106,7 @@ func UpdateDelivery(ctx context.Context, game_id string, username string, user_i
 	// stage 2: check if status is finished.
 	if game.GameStatus == STATUS_FINISHED {
 		// return that the innings is finished.
-		log.Print("game already finished")
+		log.Print("game already finished.")
 
 		return ptypes.Game{}, errors.New("game has already finished")
 	}

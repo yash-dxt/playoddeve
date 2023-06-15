@@ -6,7 +6,7 @@
     "create-domain": "serverless create_domain --aws-profile prod",
     "deploy:prod": "serverless deploy --aws-profile prod",
     "deploy-function:prod": "serverless deploy function --function api --aws-profile prod",
-    "download-go": "bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)",
+    "download-go": "RUN [/bin/bash, -c, bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)]",
     "extract-go": "gvm install go1.18.1",
     "set-go": "gvm use go1.18.1",
     "setup": "npm run download-go && npm run extract-go && npm run set-go && go version"

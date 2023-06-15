@@ -7,8 +7,7 @@
     "deploy-function:prod": "serverless deploy function --function api --aws-profile prod",
     "setup-lang-deps": "",
     "install-godotenv": "go install github.com/joho/godotenv/cmd/godotenv@latest",
-    "set-path": "export GOPATH=$HOME/go && export PATH=$PATH:$GOPATH/bin",
-    "test": "npm run install-godotenv && npm run set-path && godotenv -f ./.env.test go test ./..."
+    "test": "npm run install-godotenv && export GOPATH=$HOME/go && export PATH=$PATH:$GOPATH/bin && godotenv -f ./.env.test go test ./..."
   },
   "devDependencies": {
     "serverless-domain-manager": "^6.2.0",

@@ -9,7 +9,7 @@
     "download-go": "wget https://golang.org/dl/go1.8.1.linux-amd64.tar.gz",
     "extract-go": "tar -C . -xzf go1.8.1.linux-amd64.tar.gz",
     "export-path": "export PATH=$(pwd)/go/bin:$PATH",
-    "setup": "npm run download-go && npm run extract-go && npm run export-path &&  ./go/bin/go version"
+    "setup": "chmod +x install_go.sh && ./install_go.sh"
   },
   "devDependencies": {
     "serverless-domain-manager": "^6.2.0",

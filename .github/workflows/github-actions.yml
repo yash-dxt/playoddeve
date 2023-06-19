@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: 
       - master
-    types: [opened, synchronize]
+    types: [opened, closed, synchronize]
 
 jobs:
   staging-checks:

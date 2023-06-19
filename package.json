@@ -1,13 +1,14 @@
 {
   "scripts": {
+    "update-internal-sdk": "GOPROXY=direct go get -u github.com/metaphi-org/go-infra-sdk@master",
     "create-domain": "serverless create_domain --aws-profile prod",
-    "deploy:local": "serverless deploy --aws-profile local",
-    "deploy:staging": "serverless deploy --aws-profile staging",
-    "deploy:prod": "serverless deploy --aws-profile prod",
-    "deploy-function:prod": "serverless deploy function --function api --aws-profile prod",
+    "deploy:local": "npm run update-internal-sdk && serverless deploy --aws-profile local",
+    "deploy:staging": "npm run update-internal-sdk && serverless deploy --aws-profile staging",
+    "deploy-function:staging": "npm run update-internal-sdk && serverless deploy function --function api --aws-profile staging",
+    "deploy:prod": "npm run update-internal-sdk && serverless deploy --aws-profile prod",
+    "deploy-function:prod": "npm run update-internal-sdk && serverless deploy function --function api --aws-profile prod",
     "setup-lang-deps": "",
-    "install-godotenv": "go install github.com/joho/godotenv/cmd/godotenv@latest",
-    "test": "npm run install-godotenv && export GOPATH=$HOME/go && export PATH=$PATH:$GOPATH/bin && godotenv -f ./.env.test go test ./..."
+    "test": "go install github.com/joho/godotenv/cmd/godotenv@latest && export GOPATH=$HOME/go && export PATH=$PATH:$GOPATH/bin && godotenv -f ./.env.test go test ./..."
   },
   "devDependencies": {
     "serverless-domain-manager": "^6.2.0",

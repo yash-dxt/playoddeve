@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: 
       - master
-    types: [opened, closed, synchronize]
+    types: [opened, synchronize]
 
 jobs:
   staging-checks:
@@ -12,6 +12,6 @@ jobs:
     uses: yash-dxt/reusable-workflow/.github/workflows/deploy-staging.yml@main
     secrets: inherit
   deploy-prod:
-    if: github.event.action == 'closed' && github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     uses: yash-dxt/reusable-workflow/.github/workflows/deploy-prod.yml@main
     secrets: inherit

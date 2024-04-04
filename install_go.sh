@@ -8,5 +8,5 @@
 # export PATH="$(pwd)/go/bin:$PATH"
 
 # Display the Go version
-echo "Hi"
+echo "Hey"
 
